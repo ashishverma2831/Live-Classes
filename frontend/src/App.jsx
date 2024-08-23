@@ -12,6 +12,7 @@ import Portrait from './pages/Portrait'
 import RealmeNextAI from './pages/RealmeNextAI'
 import Support from './pages/Support'
 import ErrorPage from './pages/ErrorPage'
+import ProductDetail from './pages/ProductDetail'
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
           <Route path='/portrait' element={<Portrait />} />
           <Route path='/realme-nextai' element={<RealmeNextAI />} />
           <Route path='/support' element={<Support />} />
+          <Route path='/brand/goods/:id' element={<ProductDetail />} />
           <Route path='*' element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
