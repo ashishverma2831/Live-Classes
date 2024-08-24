@@ -13,6 +13,7 @@ import RealmeNextAI from './pages/RealmeNextAI'
 import Support from './pages/Support'
 import ErrorPage from './pages/ErrorPage'
 import ProductDetail from './pages/ProductDetail'
+import Register from './pages/Register'
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           <Route path='/cart' element={<Cart />} />
           <Route path='/community' element={<Community />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
           <Route path='/orders' element={<MyOrder />} />
           <Route path='/portrait' element={<Portrait />} />
           <Route path='/realme-nextai' element={<RealmeNextAI />} />
