@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors = require('cors');
 dotenv.config();
 
 const app = express();
@@ -14,34 +15,17 @@ mongoose.connect(process.env.MONGO_URI)
 });
 
 
+// routers
+const UserRouter = require('./routers/userRouter');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// middlewares
+app.use(express.json());
+app.use(
+    cors({
+        origin: '*',
+    })
+)
+app.use('/user',UserRouter);
 
 
 

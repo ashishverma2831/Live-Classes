@@ -17,8 +17,21 @@ const Register = () => {
         email:'',
         password:''
     },
-    onSubmit: (values)=>{
+    onSubmit: async (values)=>{
       console.log(values);
+
+      const res = await fetch('http://localhost:3000/user/add',{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify(values)
+      })
+
+      console.log(res.status);
+      if(res.status === 200)
+        console.log('User registered');
+
     },
     validationSchema:registerSchema
     })
