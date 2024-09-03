@@ -15,8 +15,21 @@ router.post('/add',(req,res)=>{
     });
 })
 
-router.get('authenticate',()=>{
-    
+router.post('/authenticate',async (req,res)=>{
+    console.log(req.body);
+    const {email,password} = req.body;
+    await User.findOne(req.body)
+    .then((result) => {
+        if(result){
+            res.json(result);
+        }
+        else{
+            res.status(401).json({message:'Invalid credentials'});
+        }
+    }).catch((err) => {
+        console.log('Error authenticating user'+ err);
+        res.status(500).json({message:'Server error'});
+    });
 })
 
 module.exports = router;

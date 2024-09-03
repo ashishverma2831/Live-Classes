@@ -1,6 +1,6 @@
 import React from 'react'
 import Nav from '../components/Nav'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
@@ -13,13 +13,35 @@ const loginSchema = Yup.object().shape({
 
 const Login = () => {
 
+  const navigate = useNavigate();
+
   const loginForm = useFormik({
     initialValues:{
         email:'',
         password:''
     },
-    onSubmit: (values)=>{
+    onSubmit:  async (values)=>{
       console.log(values);
+      const res = await fetch('http://localhost:3000/user/authenticate',{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify(values)
+      })
+
+      console.log(res.status);
+
+      if(res.status === 200){
+        console.log('Login successful');
+        const data = await res.json();
+        sessionStorage.setItem('user',JSON.stringify(data));
+        navigate('/');
+      }
+      else{
+        console.log('Login failed');
+      }
+      
     },
     validationSchema:loginSchema
   })
